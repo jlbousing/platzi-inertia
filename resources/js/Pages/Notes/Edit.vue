@@ -37,6 +37,10 @@
                                 <button
                                     class="font-bold py-2 px-4 rounded-md bg-blue-500"
                                 >Editar</button>
+
+                                <hr class="my-6" />
+
+                                <a href="#" @click.prevent="destroy">Eliminar nota</a>
                             </form>
                         </div>
                     </div>
@@ -69,6 +73,12 @@ export default {
     methods: {
         submit() {
             this.$inertia.put(this.route('notes.update',this.note.id),this.form)
+        },
+        destroy() {
+            if(confirm('Desea eliminar ?')) {
+                console.log("probando condicoon",this.route('notes.destroy',this.note.id))
+                this.$inertia.delete(this.route('notes.destroy',this.note.id))
+            }
         }
     }
 }
